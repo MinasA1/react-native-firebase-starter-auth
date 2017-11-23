@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">RNFirebaseStarter</string>
+    <string name="facebook_app_id"><!--FACEBOOKAPPID--></string>
+    <string name="fb_login_protocol_scheme">fb<!--FACEBOOKAPPID--></string>
 </resources>

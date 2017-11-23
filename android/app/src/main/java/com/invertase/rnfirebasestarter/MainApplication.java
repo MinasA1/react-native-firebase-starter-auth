@@ -2,7 +2,12 @@ package com.invertase.rnfirebasestarter;
 
 import android.app.Application;
 
+import com.facebook.CallbackManager;
+import com.facebook.FacebookSdk;
 import com.facebook.react.ReactApplication;
+import com.oblador.vectoricons.VectorIconsPackage;
+import co.apptailor.googlesignin.RNGoogleSigninPackage;
+import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -25,6 +30,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class MainApplication extends Application implements ReactApplication {
+  // react-native-fbsdk
+  private static CallbackManager mCallbackManager = CallbackManager.Factory.create();
 
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
     @Override
@@ -36,6 +43,9 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
         new MainReactPackage(),
+        new VectorIconsPackage(),
+        new RNGoogleSigninPackage(),
+        new FBSDKPackage(mCallbackManager),
         new RNFirebasePackage(),
         // add/remove these packages as appropriate
         new RNFirebaseAdMobPackage(),
@@ -50,7 +60,7 @@ public class MainApplication extends Application implements ReactApplication {
         new RNFirebaseStoragePackage()
       );
     }
-    
+
     @Override
     protected String getJSMainModuleName() {
       return "index";
@@ -66,5 +76,13 @@ public class MainApplication extends Application implements ReactApplication {
   public void onCreate() {
     super.onCreate();
     SoLoader.init(this, /* native exopackage */ false);
+
+    // react-native-fbsdk
+    FacebookSdk.sdkInitialize(getApplicationContext());
+  }
+
+  // react-native-fbsdk
+  protected static CallbackManager getCallbackManager() {
+    return mCallbackManager;
   }
 }
