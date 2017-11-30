@@ -68,15 +68,15 @@ If you're only developing for one platform you can ignore the steps below that a
 - 3.1.1) Open the `ios/GoogleService-Info.plist` file
 - 3.1.2) Copy the `CLIENT ID` value to the `src/config/index.js` file's `GOOGLE_SIGN_IN_IOS_CLIENT_ID` value
 - 3.1.3) Copy the `REVERSED_CLIENT_ID` value from the `ios/GoogleService-Info.plist` file, you'll need it for the next few steps
-- 3.1.4) Open Xcode
-- 3.1.5) Select your project
-- 3.1.6) Click `Build Settings`
+- 3.1.4) Open your project in Xcode **(remember to use the .xcworkspace file)**
+- 3.1.5) Select your project in the left hand window
+- 3.1.6) Click `Build Settings` at the top of the page
 - 3.1.7) Scroll to the bottom until you see a `GOOGLE_SIGN_IN_URL_SCHEME` property in the `user-defined` section
 - 3.1.8) Set the value to the `REVERSED_CLIENT_ID` you copied above
 
 #### 3.2) Android
 
-- 3.2.1) Load your [API Credentials](https://console.developers.google.com/apis/credentials)
+- 3.2.1) Load the [API Credentials](https://console.developers.google.com/apis/credentials) for your project
 - 3.2.2) If you do not have a Web Application OAuth 2.0 client ID, then create a new one
 - 3.2.3) Open the Web Application OAuth 2.0 client ID
 - 3.2.4) Copy the `Client ID` to the `src/config/index.js` file's `GOOGLE_SIGN_IN_ANDROID_CLIENT_ID` value
@@ -88,7 +88,7 @@ If you're only developing for one platform you can ignore the steps below that a
 - 3.3.2) Make sure it is enabled
 - 3.3.3) Make sure that your `SHA-1` fingerprint is set in your project settings as explained on screen
 - 3.3.4) Go back to the Google setup and open the `Web SDK configuration` section
-- 3.3.5) Copy the Client ID and Client Secret you noted in the `Android` instructions above
+- 3.3.5) Copy the Client ID and Client Secret you noted in the `Android` instructions above (if they aren't already set)
 - 3.3.6) Click `SAVE`
 
 ### 4) Facebook
