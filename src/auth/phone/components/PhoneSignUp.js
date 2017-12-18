@@ -15,7 +15,7 @@ const onSuccess = (user: Object, name?: string) => {
   // We set the display name of the user based on what was entered on the registration screen
   user.updateProfile({ displayName: name });
   // FirebaseAnalytics: Tell Analytics that a user has registered by phone number
-  firebase.analytics().logEvent('sign up', {
+  firebase.analytics().logEvent('sign_up', {
     sign_up_method: 'phone',
   });
 };
