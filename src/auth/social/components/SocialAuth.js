@@ -83,7 +83,7 @@ class SocialAuth extends React.Component<Props> {
         // If there is a credential, perform the corresponding Firebase action
         if (type === 'link') {
           user = await firebase.auth().currentUser.linkWithCredential(credential);
-        } else if (type === 'reauth') {
+        } else if (type === 'reAuth') {
           user = await firebase.auth().currentUser.reauthenticateWithCredential(credential);
         } else {
           user = await firebase.auth().signInWithCredential(credential);

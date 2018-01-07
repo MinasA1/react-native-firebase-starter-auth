@@ -171,7 +171,7 @@ class EmailAuth extends React.Component<Props> {
       if (type === 'link') {
         const credential = firebase.auth.EmailAuthProvider.credential(email, password);
         user = await firebase.auth().currentUser.linkWithCredential(credential);
-      } else if (type === 'reauth') {
+      } else if (type === 'reAuth') {
         const credential = firebase.auth.EmailAuthProvider.credential(email, password);
         user = await firebase.auth().currentUser.reauthenticateWithCredential(credential);
       } else if (type === 'register') {
@@ -194,7 +194,6 @@ class EmailAuth extends React.Component<Props> {
   }
 }
 
-// connect allows the component to communicate with redux
 // withNavigation ensures that the component has access to the navigation object
 // reduxForm allows `redux-form` to manage the underlying form and its fields
 export default withNavigation(reduxForm({

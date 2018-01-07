@@ -10,8 +10,6 @@
  * 2) Phone
  * 3) Facebook
  * 4) Google
- *
- * It is connected to Redux to determine whether it should be showing or not.
  */
 import React from 'react';
 import { Dimensions, StyleSheet, Text, View } from 'react-native';
