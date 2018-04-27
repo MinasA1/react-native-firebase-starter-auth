@@ -91,13 +91,17 @@ class ChangeEmail extends React.Component<Props> {
   onChangeEmail = async (values: Object) => {
     try {
       const { email, password } = values;
-      const currentEmail = firebase.auth().currentUser.email;
+      const { currentUser } = firebase.auth();
+      if (!currentUser || !currentUser.email) {
+        console.warn('Unexpected State: CurrentUser is unavailable');
+        return;
+      }
 
       // 1) We need to re-authenticate the user before updating their email address for security
-      const credential = firebase.auth.EmailAuthProvider.credential(currentEmail, password);
-      await firebase.auth().currentUser.reauthenticateWithCredential(credential);
+      const credential = firebase.auth.EmailAuthProvider.credential(currentUser.email, password);
+      await currentUser.reauthenticateAndRetrieveDataWithCredential(credential);
       // 2) We update the user's email address
-      await firebase.auth().currentUser.updateEmail(email);
+      await currentUser.updateEmail(email);
       // 3) We show a success message
       showMessage('Your email address has been updated');
       // 4) We navigate back to the previous screen

@@ -6,6 +6,7 @@
 import React from 'react';
 import { Image, StyleSheet, Text } from 'react-native';
 import firebase from 'react-native-firebase';
+import type { User } from 'react-native-firebase';
 import type { NavigationScreenProp } from 'react-navigation/src/TypeDefinition';
 import { connect } from 'react-redux';
 
@@ -36,7 +37,7 @@ type State = {
   // Temporarily stores the provider ID being edited
   editSocialProviderId?: string,
   // The current Firebase user
-  user: firebase.auth.User,
+  user: User,
 }
 
 const styles = StyleSheet.create({

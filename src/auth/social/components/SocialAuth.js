@@ -78,18 +78,30 @@ class SocialAuth extends React.Component<Props> {
       dispatch(showLoading());
       // Retrieve the credential from the social account
       const credential = await this.getCredential();
+
       if (credential) {
-        let user;
+        let userCredential;
         // If there is a credential, perform the corresponding Firebase action
         if (type === 'link') {
-          user = await firebase.auth().currentUser.linkWithCredential(credential);
+          const { currentUser } = firebase.auth();
+          if (!currentUser) {
+            console.warn('Unexpected State: CurrentUser is unavailable');
+            return;
+          }
+          userCredential = await currentUser.linkAndRetrieveDataWithCredential(credential);
         } else if (type === 'reAuth') {
-          user = await firebase.auth().currentUser.reauthenticateWithCredential(credential);
+          const { currentUser } = firebase.auth();
+          if (!currentUser) {
+            console.warn('Unexpected State: CurrentUser is unavailable');
+            return;
+          }
+          userCredential =
+            await currentUser.reauthenticateAndRetrieveDataWithCredential(credential);
         } else {
-          user = await firebase.auth().signInWithCredential(credential);
+          userCredential = await firebase.auth().signInAndRetrieveDataWithCredential(credential);
         }
 
-        if (onSuccess) onSuccess(user, credential.providerId);
+        if (onSuccess) onSuccess(userCredential.user, credential.providerId);
       }
     } catch (error) {
       if (type === 'link' && error.code === 'auth/requires-recent-login') {

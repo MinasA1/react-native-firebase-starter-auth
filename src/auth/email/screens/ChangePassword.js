@@ -91,13 +91,17 @@ class ChangePassword extends React.Component<Props> {
   onChangePassword = async (values: Object) => {
     try {
       const { oldPassword, newPassword } = values;
-      const { email } = firebase.auth().currentUser;
+      const { currentUser } = firebase.auth();
+      if (!currentUser || !currentUser.email) {
+        console.warn('Unexpected State: CurrentUser is unavailable');
+        return;
+      }
 
       // 1) We need to re-authenticate the user before updating their password for security
-      const credential = firebase.auth.EmailAuthProvider.credential(email, oldPassword);
-      await firebase.auth().currentUser.reauthenticateWithCredential(credential);
+      const credential = firebase.auth.EmailAuthProvider.credential(currentUser.email, oldPassword);
+      await currentUser.reauthenticateAndRetrieveDataWithCredential(credential);
       // 2) We update the user's password
-      await firebase.auth().currentUser.updatePassword(newPassword);
+      await currentUser.updatePassword(newPassword);
       // 3) We show a success message
       showMessage('Your password has been updated');
       // 4) We navigate back to the previous screen

@@ -5,7 +5,7 @@
  * It is shared across both Android and iOS.
  */
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, YellowBox } from 'react-native';
 import firebase from 'react-native-firebase';
 import { GoogleSignin } from 'react-native-google-signin';
 import { Provider } from 'react-redux';
@@ -16,6 +16,16 @@ import store from './redux/store';
 import LoadingModal from './ui/components/LoadingModal';
 import LoggedIn from './loggedin/screens';
 import LoggedOut from './loggedout/screens';
+
+// TODO: This is here because of warnings in react-navigation:
+YellowBox.ignoreWarnings([
+  // https://github.com/react-navigation/react-navigation/issues/3956
+  'Warning: isMounted(...) is deprecated',
+  // https://github.com/facebook/react-native/issues/14806
+  'Class RCTCxxxModule was not exported',
+  // https://github.com/facebook/react-native/issues/17504
+  'Module RCTImageLoader requires main queue setup',
+]);
 
 // Configure `react-native-google-signin` with our client IDs
 GoogleSignin.configure({

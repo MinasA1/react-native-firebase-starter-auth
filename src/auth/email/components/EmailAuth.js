@@ -166,21 +166,34 @@ class EmailAuth extends React.Component<Props> {
   onSubmit = async (values: Object) => {
     const { email, name, password } = values;
     const { navigation, onSuccess, type } = this.props;
+
     try {
-      let user;
+      let userCredential;
       if (type === 'link') {
+        const { currentUser } = firebase.auth();
+        if (!currentUser) {
+          console.warn('Unexpected State: CurrentUser is unavailable');
+          return;
+        }
         const credential = firebase.auth.EmailAuthProvider.credential(email, password);
-        user = await firebase.auth().currentUser.linkWithCredential(credential);
+        userCredential = await currentUser.linkAndRetrieveDataWithCredential(credential);
       } else if (type === 'reAuth') {
+        const { currentUser } = firebase.auth();
+        if (!currentUser) {
+          console.warn('Unexpected State: CurrentUser is unavailable');
+          return;
+        }
         const credential = firebase.auth.EmailAuthProvider.credential(email, password);
-        user = await firebase.auth().currentUser.reauthenticateWithCredential(credential);
+        userCredential = await currentUser.reauthenticateAndRetrieveDataWithCredential(credential);
       } else if (type === 'register') {
-        user = await firebase.auth().createUserWithEmailAndPassword(email, password);
+        userCredential =
+          await firebase.auth().createUserAndRetrieveDataWithEmailAndPassword(email, password);
       } else {
-        user = await firebase.auth().signInWithEmailAndPassword(email, password);
+        userCredential =
+          await firebase.auth().signInAndRetrieveDataWithEmailAndPassword(email, password);
       }
 
-      if (onSuccess) onSuccess(user, name);
+      if (onSuccess) onSuccess(userCredential.user, name);
     } catch (error) {
       if (type === 'link' && error.code === 'auth/requires-recent-login') {
         // If we're supporting re-authentication and the error indicates that re-authentication

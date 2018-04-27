@@ -152,7 +152,7 @@ dependencies {
     implementation(project(':react-native-google-signin')) {
         exclude group: "com.google.android.gms"
     }
-    implementation 'com.google.android.gms:play-services-auth:11.8.0'
+    implementation 'com.google.android.gms:play-services-auth:15.0.0'
 
     // react-native-fbsdk
     implementation project(':react-native-fbsdk')
