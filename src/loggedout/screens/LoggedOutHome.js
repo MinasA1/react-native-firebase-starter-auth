@@ -12,7 +12,7 @@ import Button from '../../ui/components/Button';
 import LinkButton from '../../ui/components/LinkButton';
 import Screen from '../../ui/components/Screen';
 
-import RNFirebaseLogo from '../../../assets/RNFirebase512x512.png';
+import RNFirebaseLogo from '../../../assets/RNFirebase.png';
 
 /*
  * We use flow type to validate the Props of the component

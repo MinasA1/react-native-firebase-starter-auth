@@ -8,7 +8,7 @@ import { Image, StyleSheet, Text, View } from 'react-native';
 
 import Screen from '../../ui/components/Screen';
 
-import RNFirebaseLogo from '../../../assets/RNFirebase512x512.png';
+import RNFirebaseLogo from '../../../assets/RNFirebase.png';
 
 const styles = StyleSheet.create({
   image: {

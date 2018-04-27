@@ -4,7 +4,7 @@
 [![Sponsors on Open Collective](https://opencollective.com/react-native-firebase/sponsors/badge.svg)](#sponsors)
 [![npm version](https://img.shields.io/npm/v/react-native-firebase.svg?style=flat-square)](https://www.npmjs.com/package/react-native-firebase)
 [![NPM downloads](https://img.shields.io/npm/dm/react-native-firebase.svg?style=flat-square)](https://www.npmjs.com/package/react-native-firebase)
-[![Chat](https://img.shields.io/badge/chat-on%20discord-7289da.svg?style=flat-square)](https://discord.gg/t6bdqMs)
+[![Chat](https://img.shields.io/badge/chat-on%20discord-7289da.svg?style=flat-square)](https://discord.gg/C9aK28N)
 [![Twitter Follow](https://img.shields.io/twitter/follow/rnfirebase.svg?style=social&label=Follow)](https://twitter.com/rnfirebase)
 
 ---
@@ -16,7 +16,7 @@ A basic react native app with [`react-native-firebase`](https://github.com/inver
 
 ## Getting Started
 
-If you're only developing for one platform you can ignore the steps below that are tagged with the platform you don't require.
+> If you're only developing for one platform you can ignore the steps below that are tagged with the platform you don't require.
 
 ### 1) Clone & Install Dependencies
 
@@ -40,6 +40,7 @@ If you're only developing for one platform you can ignore the steps below that a
 - 3.2) **[iOS]** Place this file in the `ios/` directory of your project.
 - 3.3) **[Android]** Follow the `manually add firebase` to your app instructions [here](https://firebase.google.com/docs/android/setup#manually_add_firebase) to generate your `google-services.json` file if you haven't done so already - use the package name generated previously as your `Android package name`.
 - 3.4) Place this file in the `android/app/` directory of your project.
+
 
 ## Setting up Authentication
 
